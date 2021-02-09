@@ -57,7 +57,7 @@ public class DefaultConfig {
     		if (LOCAL_BASENJI.equals(honeycombHost)) {
             	String[] tokens = honeycombHost.split(":");
             	String protocol = tokens[0];
-            	String host = tokens[1];
+            	String host = tokens[1].replace("//", "");
             	String port = tokens[2];
             	
             	//Setup the basenji proxy
