@@ -41,9 +41,19 @@ public class BeerAPIService {
 		
 		Beer beer = mapper.readValue(response, Beer.class);
 		if (beer != null) {
+			String percentStr = beer.getAlcohol().substring(0, beer.getAlcohol().length()-1);
+			double percent = Double.parseDouble(percentStr);
+			
+			String ibuStr = beer.getIbu().split(" ")[0];
+			int ibu = Integer.parseInt(ibuStr);
+			
 			childSpan.addField("beer.id", beer.getId());
 			childSpan.addField("beer.name", beer.getName());
 			childSpan.addField("beer.style", beer.getStyle());
+			childSpan.addField("beer.brand", beer.getBrand());
+			childSpan.addField("beer.ibu", ibu);
+			childSpan.addField("beer.alchol_percent", percent);
+			childSpan.addField("beer.misc", beer.getHop() + "\n " + beer.getMalts() + " \n" + beer.getYeast());
 		}
 		return beer;
 	}
