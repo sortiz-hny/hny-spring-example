@@ -1,14 +1,19 @@
 # hny-spring-example
 A dummy application to demo the spring-boot/honeycomb integration
 
+# Prerequisites
+Download the honeycomb-opentelemetry-java jar and install it in the root directory of this project.
+https://github.com/honeycombio/honeycomb-opentelemetry-java#agent-usage
+
 # Setup
 ```
 mvn clean install
 ```
 
 # Run it
+Modify start_service.sh with the correct API Keys, then use: 
 ```
-java -jar target/hny-example-0.0.1-SNAPSHOT.jar --honeycomb.beeline.write-key=<my write key> --honeycomb.beeline.api-host=http://localhost:8081
+./start_service.sh
 ```
 
 # Test it
