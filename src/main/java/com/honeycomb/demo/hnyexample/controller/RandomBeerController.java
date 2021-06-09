@@ -11,30 +11,25 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.honeycomb.demo.hnyexample.model.Beer;
 
-import io.honeycomb.beeline.tracing.Beeline;
-import io.honeycomb.beeline.tracing.Span;
-
 @RestController
 public class RandomBeerController {
-	private final Beeline beeline;
 	private BeerAPIService beerService;
 	
 	   
 	@Autowired
-	RandomBeerController(Beeline beeline, BeerAPIService beerService) {
-		this.beeline = beeline;
+	RandomBeerController(BeerAPIService beerService) {
 		this.beerService = beerService;
 	}
 
 	@GetMapping(path = "/beer", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Beer> untapBeer() throws JsonMappingException, JsonProcessingException {
 		Beer beer = null;
-		try (Span childSpan = beeline.getSpanBuilderFactory().createBuilder()
-			.setSpanName("untap-beer")
-			.setServiceName("hny-spring-boot-example")
-			.build()) {
+		//try (Span childSpan = beeline.getSpanBuilderFactory().createBuilder()
+		//	.setSpanName("untap-beer")
+		//	.setServiceName("hny-spring-boot-example")
+		//	.build()) {
 			beer = beerService.getBeer();
-		} 
+		//} 
 		
 		return new ResponseEntity<Beer>(beer, HttpStatus.OK);
 	}
