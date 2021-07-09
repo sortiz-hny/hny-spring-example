@@ -1,12 +1,13 @@
 package com.honeycomb.demo.hnyexample.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Beer {
 
 	private long id;
-	private String uid;
+	private String uuid;
 	private String brand;
 	private String name;
 	private String style;
@@ -17,17 +18,21 @@ public class Beer {
 	private String alcohol;
 	private String blg;
 	
+
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getUid() {
-		return uid;
+	
+	@JsonProperty("uid")
+	public String getUuid() {
+		return uuid;
 	}
+	@JsonProperty("uid")
 	public void setUuid(String uid) {
-		this.uid = uid;
+		this.uuid = uid;
 	}
 	public String getBrand() {
 		return brand;
